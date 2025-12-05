@@ -115,291 +115,298 @@
             font-size: 0.9em;
         }
         
-        /* ESTILOS ESPECÍFICOS DE FONDO */
-        #tab-ximena .container {
-            background: radial-gradient(circle, #86a8e7, #86a1e8, #8998e9, #8e90e8, #9586e5, #9b84e2, #a183de, #a681db, #aa88d8, #ad8fd6, #b095d3, #b39cd0);
-        }
-        
-        #tab-rafa .container {
-            background: linear-gradient(135deg, #000000 0%, #2E8B57 100%);
-        }
-        
-        #tab-combinado .container {
-            background: linear-gradient(to right top, #2e8b57, #00957d, #009ea2, #00a4c2, #31a7d9, #54a8e4, #74a8ec, #92a8f0, #9ea7f6, #aba5fa, #b9a3fd, #c9a0ff);
-        }
-        
-        #tab-config .container { 
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); 
-        }
+        /* ESTILOS ESPECÍFICOS DE FONDO - VERSIÓN INFINITA */
+#tab-ximena {
+    background: radial-gradient(circle at center, #86a8e7, #86a1e8, #8998e9, #8e90e8, #9586e5, #9b84e2, #a183de, #a681db, #aa88d8, #ad8fd6, #b095d3, #b39cd0) fixed;
+    background-size: cover;
+}
 
-        /* CONTENEDOR PRINCIPAL */
-        .container {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: calc(100vh - 70px);
-        }
+#tab-rafa {
+    background: linear-gradient(135deg, #000000 0%, #2E8B57 100%) fixed;
+    background-size: cover;
+}
 
-        /* BATTERY SECTIONS */
-        .battery-section {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            margin: 20px 0;
-        }
+#tab-combinado {
+    background: linear-gradient(to right top, #2e8b57, #00957d, #009ea2, #00a4c2, #31a7d9, #54a8e4, #74a8ec, #92a8f0, #9ea7f6, #aba5fa, #b9a3fd, #c9a0ff) fixed;
+    background-size: cover;
+}
 
-        .battery-container {
-            position: relative;
-            width: 100px;
-            height: 250px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            border: 3px solid white;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
+#tab-config { 
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%) fixed;
+    background-size: cover;
+}
 
-        .battery-level {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: linear-gradient(to top, #ff4444, #ffaa00, #ffff00, #88ff00);
-            height: 50%;
-            transition: height 1s ease;
-        }
+/* CONTENEDOR PRINCIPAL - TRANSPARENTE SOBRE FONDO */
+.container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 70px);
+    background: transparent; /* ¡IMPORTANTE! Transparente para ver fondo */
+}
 
-        .battery-percent {
-            position: absolute;
-            top: -35px;
-            width: 100%;
-            text-align: center;
-            font-size: 1.3em;
-            font-weight: bold;
-        }
+/* ============================================= */
+/* ESTILOS COMPARTIDOS DE LAS APPS INDIVIDUALES */
+/* ============================================= */
+.battery-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 20px 0;
+}
 
-        .face-track {
-            position: relative;
-            width: 100px;
-            height: 250px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            border: 2px dashed rgba(255,255,255,0.3);
-        }
+.battery-container {
+    position: relative;
+    width: 100px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    border: 3px solid white;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
 
-        .custom-face {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: transparent;
-            border: 3px solid gold;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: top 0.5s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            cursor: grab;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
+.battery-level {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to top, #ff4444, #ffaa00, #ffff00, #88ff00);
+    height: 50%;
+    transition: height 1s ease;
+}
 
-        .custom-face:active { cursor: grabbing; }
-        .custom-face img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
+.battery-percent {
+    position: absolute;
+    top: -35px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+}
 
-        .default-face {
-            font-size: 40px;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
-        }
+.face-track {
+    position: relative;
+    width: 100px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 2px dashed rgba(255,255,255,0.3);
+}
 
-        .status-display {
-            font-size: 1.3em;
-            font-weight: bold;
-            margin: 15px 0;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            text-align: center;
-        }
+.custom-face {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: transparent;
+    border: 3px solid gold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: top 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: grab;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
 
-        .battery-icon { font-size: 2em; margin: 10px 0; }
+.custom-face:active { cursor: grabbing; }
+.custom-face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
-        .controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            width: 100%;
-            max-width: 300px;
-            margin: 10px 0;
-        }
+.default-face {
+    font-size: 40px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
 
-        button {
-            padding: 12px;
-            font-size: 0.9em;
-            border: none;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
+.status-display {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 15px 0;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
 
-        button:hover {
-            background: white;
-            transform: translateY(-2px);
-        }
+.battery-icon { font-size: 2em; margin: 10px 0; }
 
-        .upload-section {
-            margin: 15px 0;
-            text-align: center;
-        }
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px 0;
+}
 
-        .upload-btn {
-            background: rgba(76, 175, 80, 0.8);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 15px;
-            cursor: pointer;
-            display: inline-block;
-            transition: all 0.3s ease;
-            font-size: 0.9em;
-        }
+button {
+    padding: 12px;
+    font-size: 0.9em;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
 
-        .upload-btn:hover { background: rgba(76, 175, 80, 1); }
-        input[type="file"] { display: none; }
+button:hover {
+    background: white;
+    transform: translateY(-2px);
+}
 
-        .manual-controls {
-            display: flex;
-            gap: 10px;
-            margin: 10px 0;
-            justify-content: center;
-        }
+.upload-section {
+    margin: 15px 0;
+    text-align: center;
+}
 
-        .manual-btn {
-            background: rgba(255, 193, 7, 0.8);
-            color: #333;
-            padding: 8px 12px;
-            border-radius: 10px;
-            font-size: 0.8em;
-        }
+.upload-btn {
+    background: rgba(76, 175, 80, 0.8);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+}
 
-        .sync-status {
-            font-size: 0.8em;
-            opacity: 0.7;
-            margin-top: 5px;
-            text-align: center;
-        }
+.upload-btn:hover { background: rgba(76, 175, 80, 1); }
+input[type="file"] { display: none; }
 
-        .emoji-options {
-            display: flex;
-            gap: 10px;
-            margin: 10px 0;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+.manual-controls {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+    justify-content: center;
+}
 
-        .emoji-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.manual-btn {
+    background: rgba(255, 193, 7, 0.8);
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 0.8em;
+}
 
-        .emoji-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
+.sync-status {
+    font-size: 0.8em;
+    opacity: 0.7;
+    margin-top: 5px;
+    text-align: center;
+}
 
-        /* VISTA COMBINADA */
-        .energy-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-            width: 100%;
-        }
+.emoji-options {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
-        .energy-bar-container {
-            position: relative;
-            width: 140px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            border: 3px solid white;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
+.emoji-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-        .energy-bar {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: linear-gradient(to bottom, #00ff00, #ffff00, #ff4444);
-            height: 100%;
-        }
+.emoji-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
 
-        .marker {
-            position: absolute;
-            font-size: 2.5em;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
-            z-index: 10;
-            transition: top 0.5s ease;
-        }
+/* VISTA COMBINADA */
+.energy-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    width: 100%;
+}
 
-        .marker.rafa { left: 30%; transform: translateX(-50%); }
-        .marker.ximena { left: 70%; transform: translateX(-50%); }
+.energy-bar-container {
+    position: relative;
+    width: 140px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    border: 3px solid white;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
 
-        .status-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-            max-width: 400px;
-        }
+.energy-bar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, #00ff00, #ffff00, #ff4444);
+    height: 100%;
+}
 
-        .person-status {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
+.marker {
+    position: absolute;
+    font-size: 2.5em;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+    z-index: 10;
+    transition: top 0.5s ease;
+}
 
-        .person-emoji {
-            font-size: 2em;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
-            min-width: 50px;
-        }
+.marker.rafa { left: 30%; transform: translateX(-50%); }
+.marker.ximena { left: 70%; transform: translateX(-50%); }
 
-        .person-info { text-align: left; flex: 1; }
-        .person-name {
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 5px;
-        }
-        .person-battery { font-size: 0.9em; opacity: 0.9; line-height: 1.4; }
+.status-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 400px;
+}
 
-        /* CONFIGURACIÓN - VERSIÓN ELEGANTE */
+.person-status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.person-emoji {
+    font-size: 2em;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    min-width: 50px;
+}
+
+.person-info { text-align: left; flex: 1; }
+.person-name {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+.person-battery { font-size: 0.9em; opacity: 0.9; line-height: 1.4; }
+
+/* CONFIGURACIÓN - VERSIÓN ELEGANTE */
         .coming-soon-container {
             display: flex;
             flex-direction: column;

@@ -36,19 +36,53 @@
             color: white;
             min-height: 100vh;
             overflow-x: hidden;
-            transition: background 0.5s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* NAVEGACIÓN TABS */
+        /* HEADER DE VERSIÓN */
+        .version-footer {
+            position: fixed;
+            bottom: 70px; /* Justo arriba de la barra de navegación */
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.7em;
+            opacity: 0.7;
+            padding: 8px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .version-footer strong {
+            font-weight: 600;
+        }
+
+        /* NAVEGACIÓN TABS CON ANIMACIÓN */
         .app-tabs {
             display: flex;
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: #111;
-            border-top: 1px solid #333;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             z-index: 1000;
+            padding: 5px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .app-tabs::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #2E8B57, #86a8e7, #c9a0ff);
+            animation: shimmer 3s infinite linear;
         }
         
         .tab-btn {
@@ -64,23 +98,56 @@
             flex-direction: column;
             align-items: center;
             gap: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #2E8B57, #86a8e7);
+            transition: width 0.3s ease;
         }
         
         .tab-btn.active {
             color: white;
-            background: #222;
+            background: rgba(255, 255, 255, 0.05);
         }
         
-        .tab-btn .tab-icon { font-size: 1.4em; }
+        .tab-btn.active::after {
+            width: 70%;
+        }
+        
+        .tab-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.02);
+            color: #ccc;
+        }
+        
+        .tab-btn .tab-icon { 
+            font-size: 1.4em; 
+            transition: transform 0.3s ease;
+        }
+        
+        .tab-btn:hover .tab-icon {
+            transform: translateY(-2px);
+        }
         
         /* CONTENIDO DE TABS */
         .tab-content {
             display: none;
-            min-height: 100vh;
+            min-height: calc(100vh - 70px); /* Ajustado para pantalla completa */
             padding-bottom: 70px;
+            flex: 1;
         }
         
-        .tab-content.active { display: block; }
+        .tab-content.active { 
+            display: block; 
+        }
         
         /* BOTÓN INSTALAR */
         #install-btn {
@@ -97,6 +164,12 @@
             z-index: 1001;
             font-weight: bold;
             font-size: 0.8em;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        #install-btn:hover {
+            background: #3cb371;
+            transform: translateY(-2px);
         }
         
         /* HEADER COMÚN */
@@ -108,6 +181,7 @@
         .tab-header h1 {
             font-size: 2em;
             margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
         .tab-header .tagline {
@@ -115,21 +189,20 @@
             font-size: 0.9em;
         }
         
-        /* ESTILOS ESPECÍFICOS DE FONDO */
-        #tab-ximena .container {
+        /* ESTILOS ESPECÍFICOS DE FONDO - CORREGIDOS */
+        #tab-ximena {
             background: radial-gradient(circle, #86a8e7, #86a1e8, #8998e9, #8e90e8, #9586e5, #9b84e2, #a183de, #a681db, #aa88d8, #ad8fd6, #b095d3, #b39cd0);
+            min-height: 100vh;
         }
         
-        #tab-rafa .container {
+        #tab-rafa {
             background: linear-gradient(135deg, #000000 0%, #2E8B57 100%);
+            min-height: 100vh;
         }
         
-        #tab-combinado .container {
+        #tab-combinado {
             background: linear-gradient(to right top, #2e8b57, #00957d, #009ea2, #00a4c2, #31a7d9, #54a8e4, #74a8ec, #92a8f0, #9ea7f6, #aba5fa, #b9a3fd, #c9a0ff);
-        }
-        
-        #tab-config .container { 
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); 
+            min-height: 100vh;
         }
 
         /* CONTENEDOR PRINCIPAL */
@@ -399,130 +472,10 @@
         }
         .person-battery { font-size: 0.9em; opacity: 0.9; line-height: 1.4; }
 
-        /* CONFIGURACIÓN - VERSIÓN ELEGANTE */
-        .coming-soon-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .coming-soon-content {
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 25px;
-            padding: 50px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .coming-soon-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #2E8B57, #86a8e7, #c9a0ff);
-            animation: shimmer 3s infinite linear;
-        }
-
-        .coming-soon-icon {
-            font-size: 5em;
-            margin-bottom: 25px;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .coming-soon-title {
-            font-size: 2.2em;
-            font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(90deg, #fff, #86a8e7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .coming-soon-subtitle {
-            font-size: 1.1em;
-            opacity: 0.9;
-            line-height: 1.6;
-            margin-bottom: 35px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .coming-soon-badge {
-            display: inline-block;
-            background: rgba(46, 139, 87, 0.2);
-            color: #4CAF50;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 600;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        .coming-soon-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .feature {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            padding: 25px 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .feature:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .feature-icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .feature-title {
-            font-weight: 600;
-            font-size: 1em;
-            margin-bottom: 8px;
-        }
-
-        .feature-desc {
-            font-size: 0.85em;
-            opacity: 0.7;
-            line-height: 1.4;
-        }
-
-        .coming-soon-footer {
-            margin-top: 40px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.85em;
-            opacity: 0.7;
-        }
-
+        /* ANIMACIONES */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-5px); }
         }
 
         @keyframes shimmer {
@@ -541,22 +494,9 @@
             .emoji-btn { width: 45px; height: 45px; font-size: 1.3em; }
             .tab-btn { padding: 10px 3px; font-size: 0.7em; }
             .tab-btn .tab-icon { font-size: 1.2em; }
-            
-            .coming-soon-content {
-                padding: 30px 20px;
-                margin: 0 15px;
-            }
-            
-            .coming-soon-title {
-                font-size: 1.8em;
-            }
-            
-            .coming-soon-features {
-                grid-template-columns: 1fr;
-            }
-            
-            .coming-soon-icon {
-                font-size: 4em;
+            .version-footer {
+                font-size: 0.65em;
+                padding: 6px 10px;
             }
         }
     </style>
@@ -718,62 +658,14 @@
         </div>
     </div>
     
-    <!-- PESTAÑA CONFIGURACIÓN - VERSIÓN ELEGANTE -->
-    <div class="tab-content" id="tab-config">
-        <div class="container">
-            <div class="tab-header">
-                <h1>⚙️ Configuración</h1>
-                <p class="tagline">Próximas funcionalidades</p>
-            </div>
-            
-            <div class="coming-soon-container">
-                <div class="coming-soon-content">
-                    <div class="coming-soon-icon">🚀</div>
-                    <h1 class="coming-soon-title">Próximamente</h1>
-                    <div class="coming-soon-badge">En desarrollo</div>
-                    
-                    <p class="coming-soon-subtitle">
-                        Estamos trabajando en funcionalidades avanzadas para mejorar tu experiencia.
-                        Mientras tanto, disfruta de la conexión especial que esta app te ofrece.
-                    </p>
-                    
-                    <div class="coming-soon-features">
-                        <div class="feature">
-                            <span class="feature-icon">🔔</span>
-                            <div class="feature-title">Notificaciones</div>
-                            <div class="feature-desc">Alertas inteligentes en tiempo real</div>
-                        </div>
-                        
-                        <div class="feature">
-                            <span class="feature-icon">🎨</span>
-                            <div class="feature-title">Temas</div>
-                            <div class="feature-desc">Personaliza colores y estilos</div>
-                        </div>
-                        
-                        <div class="feature">
-                            <span class="feature-icon">⚡</span>
-                            <div class="feature-title">Sincronización</div>
-                            <div class="feature-desc">Configuración en la nube</div>
-                        </div>
-                        
-                        <div class="feature">
-                            <span class="feature-icon">🔒</span>
-                            <div class="feature-title">Privacidad</div>
-                            <div class="feature-desc">Control total de tus datos</div>
-                        </div>
-                    </div>
-                    
-                    <div class="coming-soon-footer">
-                        <strong>Ximometro App v1.1</strong><br>
-                        Conectando energías especiales desde 2024<br>
-                        <small>✨ Desarrollado con ⚡ para conexiones únicas</small>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- FOOTER DE VERSIÓN -->
+    <div class="version-footer">
+        <strong>Ximometro App v1.1</strong><br>
+        Conectando energías desde 2024<br>
+        <small>✨ Desarrollado con ⚡ para conexiones únicas</small>
     </div>
     
-    <!-- NAVEGACIÓN INFERIOR -->
+    <!-- NAVEGACIÓN INFERIOR CON ANIMACIÓN -->
     <nav class="app-tabs">
         <button class="tab-btn active" data-tab="ximena">
             <span class="tab-icon">🥷🏻</span>
@@ -786,10 +678,6 @@
         <button class="tab-btn" data-tab="combinado">
             <span class="tab-icon">⚡</span>
             <span class="tab-text">Ambos</span>
-        </button>
-        <button class="tab-btn" data-tab="config">
-            <span class="tab-icon">⚙️</span>
-            <span class="tab-text">Ajustes</span>
         </button>
     </nav>
 
@@ -809,7 +697,7 @@
         };
 
         // =============================================
-        // NAVEGACIÓN ENTRE TABS
+        // NAVEGACIÓN ENTRE TABS (AHORA SOLO 3)
         // =============================================
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -820,14 +708,7 @@
                 const tabId = btn.getAttribute('data-tab');
                 document.getElementById(`tab-${tabId}`).classList.add('active');
                 
-                const backgrounds = {
-                    'ximena': 'radial-gradient(circle, #86a8e7, #86a1e8, #8998e9, #8e90e8, #9586e5, #9b84e2, #a183de, #a681db, #aa88d8, #ad8fd6, #b095d3, #b39cd0)',
-                    'rafa': 'linear-gradient(135deg, #000000 0%, #2E8B57 100%)',
-                    'combinado': 'linear-gradient(to right top, #2e8b57, #00957d, #009ea2, #00a4c2, #31a7d9, #54a8e4, #74a8ec, #92a8f0, #9ea7f6, #aba5fa, #b9a3fd, #c9a0ff)',
-                    'config': 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)'
-                };
-                document.querySelector('.container').style.background = backgrounds[tabId];
-                
+                // Actualizar vista combinada si es necesario
                 if (tabId === 'combinado') {
                     setTimeout(() => { combinedUpdateDisplay(); }, 100);
                 }

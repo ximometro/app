@@ -32,13 +32,9 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000;
             color: white;
             min-height: 100vh;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            padding-top: 45px; /* Espacio para la versión */
         }
 
         /* HEADER DE VERSIÓN - ARRIBA CON EFECTO VIDRIO */
@@ -141,12 +137,17 @@
             transform: translateY(-2px);
         }
         
-        /* CONTENIDO DE TABS */
+        /* CONTENIDO DE TABS - AHORA OCUPAN TODA LA PANTALLA */
         .tab-content {
             display: none;
-            min-height: calc(100vh - 115px); /* Ajustado para pantalla completa */
-            padding-bottom: 70px;
-            flex: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding-top: 45px; /* Espacio para el header */
+            padding-bottom: 70px; /* Espacio para la navegación */
+            overflow-y: auto;
         }
         
         .tab-content.active { 
@@ -196,20 +197,17 @@
             font-size: 0.9em;
         }
         
-        /* ESTILOS ESPECÍFICOS DE FONDO - CORREGIDOS */
+        /* ESTILOS ESPECÍFICOS DE FONDO - AHORA EN CADA TAB */
         #tab-ximena {
             background: radial-gradient(circle, #86a8e7, #86a1e8, #8998e9, #8e90e8, #9586e5, #9b84e2, #a183de, #a681db, #aa88d8, #ad8fd6, #b095d3, #b39cd0);
-            min-height: calc(100vh - 115px);
         }
         
         #tab-rafa {
             background: linear-gradient(135deg, #000000 0%, #2E8B57 100%);
-            min-height: calc(100vh - 115px);
         }
         
         #tab-combinado {
             background: linear-gradient(to right top, #2e8b57, #00957d, #009ea2, #00a4c2, #31a7d9, #54a8e4, #74a8ec, #92a8f0, #9ea7f6, #aba5fa, #b9a3fd, #c9a0ff);
-            min-height: calc(100vh - 115px);
         }
 
         /* CONTENEDOR PRINCIPAL */
@@ -493,8 +491,9 @@
 
         /* RESPONSIVE */
         @media (max-width: 480px) {
-            body {
-                padding-top: 40px;
+            .version-header {
+                font-size: 0.65em;
+                padding: 8px 10px;
             }
             
             .battery-section { gap: 20px; }
@@ -506,24 +505,15 @@
             .emoji-btn { width: 45px; height: 45px; font-size: 1.3em; }
             .tab-btn { padding: 10px 3px; font-size: 0.7em; }
             .tab-btn .tab-icon { font-size: 1.2em; }
-            .version-header {
-                font-size: 0.65em;
-                padding: 8px 10px;
-            }
             #install-btn {
                 top: 50px;
                 font-size: 0.7em;
                 padding: 6px 10px;
             }
             .tab-content {
-                min-height: calc(100vh - 110px);
+                padding-top: 40px;
             }
             .container {
-                min-height: calc(100vh - 110px);
-            }
-            #tab-ximena,
-            #tab-rafa,
-            #tab-combinado {
                 min-height: calc(100vh - 110px);
             }
         }
